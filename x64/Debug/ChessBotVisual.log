@@ -1,0 +1,45 @@
+﻿  ChessGame.cpp
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessGame.cpp(118,40): warning C4805: '!=': unsafe mix of type 'int' and type 'bool' in operation
+  ChessRenderer.cpp
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(53,64): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(53,64): warning C4244:         with
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(53,64): warning C4244:         [
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(53,64): warning C4244:             T=float
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(53,64): warning C4244:         ]
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(53,52): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(53,52): warning C4244:         with
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(53,52): warning C4244:         [
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(53,52): warning C4244:             T=float
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(53,52): warning C4244:         ]
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(54,54): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(54,36): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(73,58): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(73,40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(80,63): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(80,63): warning C4244:         with
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(80,63): warning C4244:         [
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(80,63): warning C4244:             T=float
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(80,63): warning C4244:         ]
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(80,51): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(80,51): warning C4244:         with
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(80,51): warning C4244:         [
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(80,51): warning C4244:             T=float
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(80,51): warning C4244:         ]
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(81,79): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(81,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(123,25): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(124,26): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(128,67): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(128,67): warning C4244:         with
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(128,67): warning C4244:         [
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(128,67): warning C4244:             T=float
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(128,67): warning C4244:         ]
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(128,55): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(128,55): warning C4244:         with
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(128,55): warning C4244:         [
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(128,55): warning C4244:             T=float
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\ChessRenderer.cpp(128,55): warning C4244:         ]
+  Source.cpp
+C:\Users\iwen2\source\repos\ChessBotVisual\ChessBotVisual\Source.cpp(46,41): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
+  ChessBotVisual.vcxproj -> C:\Users\iwen2\source\repos\ChessBotVisual\x64\Debug\ChessBotVisual.exe
