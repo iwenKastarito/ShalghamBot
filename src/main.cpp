@@ -243,35 +243,30 @@ int main() {
                 selectedSquare = sf::Vector2i(-1, -1);
                 legalMoves.clear();
                 whiteTurn = !whiteTurn;
-                
-                // Check for stalemate or checkmate AFTER switching turns
                 std::cout << "Turn switched to: " << (whiteTurn ? "WHITE" : "BLACK") << std::endl;
                 
-                bool hasLegalMoves = game.hasLegalMoves(whiteTurn);
-                bool inCheck = game.kingIsInCheck(whiteTurn);
-                
-                std::cout << "Current player has legal moves: " << (hasLegalMoves ? "YES" : "NO") << std::endl;
-                std::cout << "Current player is in check: " << (inCheck ? "YES" : "NO") << std::endl;
-                
-                if (!hasLegalMoves) {
-                    if (inCheck) {
-                        gameOver = true;
-                        gameResult = whiteTurn ? "Checkmate! Black wins!" : "Checkmate! White wins!";
-                        std::cout << "CHECKMATE DETECTED: " << gameResult << std::endl;
-                    }
-                    else {
-                        gameOver = true;
-                        gameResult = "Draw by stalemate.";
-                        std::cout << "STALEMATE DETECTED!" << std::endl;
-                    }
+                // Check for game-ending conditions
+                if (game.isCheckmate(whiteTurn)) {
+                    gameOver = true;
+                    gameResult = whiteTurn ? "Checkmate! Black wins!" : "Checkmate! White wins!";
+                    std::cout << "CHECKMATE DETECTED: " << gameResult << std::endl;
+                    
+                    // Verify checkmate for debugging
+                    game.verifyCheckmate(whiteTurn);
                 }
-                
-                // Check for draw by 50-move rule
-                if (game.halfMoveClock >= 100) {
+                else if (game.isStalemate(whiteTurn)) {
+                    gameOver = true;
+                    gameResult = "Draw by stalemate.";
+                    std::cout << "STALEMATE DETECTED!" << std::endl;
+                }
+                else if (game.isDraw50MoveRule()) {
                     gameOver = true;
                     gameResult = "Draw by 50-move rule.";
                     std::cout << "50-MOVE RULE DETECTED!" << std::endl;
                 }
+                
+                // Print game state only after a move has been made
+                printGameState(game, whiteTurn, gameOver);
                 
                 continue;
             }
@@ -327,8 +322,6 @@ int main() {
 
         renderer.render(window, selectedSquare, legalMoves, promotionPending, promotionSquare, message);
         window.display();
-
-        printGameState(game, whiteTurn, gameOver);
     }
     return 0;
 }

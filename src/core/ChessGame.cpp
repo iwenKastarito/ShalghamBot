@@ -363,3 +363,47 @@ void ChessGame::applyMove(const sf::Vector2i& from, const sf::Vector2i& to) {
         }
     }
 }
+
+bool ChessGame::isCheckmate(bool white) const {
+    // Must satisfy both conditions for checkmate:
+    // 1. King is in check
+    // 2. No legal moves exist
+    return kingIsInCheck(white) && !hasLegalMoves(white);
+}
+
+bool ChessGame::isStalemate(bool white) const {
+    // Stalemate: not in check but no legal moves
+    return !kingIsInCheck(white) && !hasLegalMoves(white);
+}
+
+bool ChessGame::isDraw50MoveRule() const {
+    return halfMoveClock >= 100; // 50 full moves = 100 half moves
+}
+
+bool ChessGame::verifyCheckmate(bool white) const {
+    if (!kingIsInCheck(white)) {
+        std::cout << "Not in check, so not checkmate" << std::endl;
+        return false;
+    }
+    
+    // Detailed verification - check every piece's every move
+    for (int row = 0; row < 8; row++) {
+        for (int col = 0; col < 8; col++) {
+            char piece = board[row][col];
+            if (piece == ' ' || std::isupper(piece) != white) continue;
+            
+            std::vector<sf::Vector2i> moves = getLegalMoves(row, col, false);
+            for (const auto& move : moves) {
+                ChessGame simState = simulateMove(sf::Vector2i(row, col), move);
+                if (!simState.kingIsInCheck(white)) {
+                    std::cout << "Escape move found: " << piece << " from [" << row << "," << col 
+                              << "] to [" << move.x << "," << move.y << "]" << std::endl;
+                    return false; // Not checkmate - found an escape move
+                }
+            }
+        }
+    }
+    
+    std::cout << "VERIFIED CHECKMATE: No escape moves for " << (white ? "White" : "Black") << std::endl;
+    return true; // Confirmed checkmate
+}

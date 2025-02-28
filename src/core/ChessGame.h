@@ -1,4 +1,4 @@
- #ifndef CHESSGAME_H
+#ifndef CHESSGAME_H
 #define CHESSGAME_H
 
 #include <SFML/Graphics.hpp>
@@ -43,6 +43,18 @@ public:
 
     // Applies a move (from → to) to the current game state.
     void applyMove(const sf::Vector2i& from, const sf::Vector2i& to);
+    
+    // Returns true if the player is in checkmate
+    bool isCheckmate(bool white) const;
+    
+    // Returns true if the player is in stalemate
+    bool isStalemate(bool white) const;
+    
+    // Returns true if it's a draw by 50-move rule
+    bool isDraw50MoveRule() const;
+    
+    // For debugging - verifies checkmate with detailed checking
+    bool verifyCheckmate(bool white) const;
 };
 
 #endif // CHESSGAME_H

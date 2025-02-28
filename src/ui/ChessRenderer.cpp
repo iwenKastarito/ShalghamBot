@@ -77,7 +77,6 @@ void ChessRenderer::render(sf::RenderWindow& window,
     }
     // 3. Highlight the selected square.
     if (selectedSquare.x != -1) {
-        std::cout << "Highlighting selected square: [" << selectedSquare.x << ", " << selectedSquare.y << "]" << std::endl;
         sf::RectangleShape highlight(sf::Vector2f(squareSize, squareSize));
         
         // Make sure we're placing the highlight using the same coordinate system
