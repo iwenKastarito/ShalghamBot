@@ -1,0 +1,3 @@
+/home/ali/Projects/ShalghamBot/build/CMakeFiles/chess.dir
+/home/ali/Projects/ShalghamBot/build/CMakeFiles/edit_cache.dir
+/home/ali/Projects/ShalghamBot/build/CMakeFiles/rebuild_cache.dir

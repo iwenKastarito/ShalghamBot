@@ -1,0 +1,9 @@
+# ninja log v6
+0	1060	1740730913884356780	CMakeFiles/chess.dir/src/bot/ChessBot.cpp.o	d987c32e223be4f3
+2	978	1740731971221904133	CMakeFiles/chess.dir/src/core/ChessGame.cpp.o	9880a0b9b19e8cba
+2	1147	1740732657054479242	CMakeFiles/chess.dir/src/main.cpp.o	17c4f67bffb27757
+2	1175	1740732657055413738	CMakeFiles/chess.dir/src/ui/ChessRenderer.cpp.o	d140aacbe5674cc7
+1175	1306	1740732658227460355	chess	8e7abf41937e1e5d
+2	1092	1740733324372464470	CMakeFiles/chess.dir/src/core/ChessGame.cpp.o	9880a0b9b19e8cba
+3	1200	1740733324373464471	CMakeFiles/chess.dir/src/main.cpp.o	17c4f67bffb27757
+1200	1333	1740733325570465157	chess	8e7abf41937e1e5d
