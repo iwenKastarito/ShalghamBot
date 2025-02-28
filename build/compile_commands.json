@@ -1,26 +1,80 @@
 [
 {
   "directory": "/home/ali/Projects/ShalghamBot/build",
-  "command": "/usr/bin/g++ -I/home/ali/Projects/ShalghamBot/include -I/home/ali/Projects/ShalghamBot/src/core -I/home/ali/Projects/ShalghamBot/src/ui -I/home/ali/Projects/ShalghamBot/src/bot -g -std=gnu++17 -o CMakeFiles/chess.dir/src/bot/ChessBot.cpp.o -c /home/ali/Projects/ShalghamBot/src/bot/ChessBot.cpp",
-  "file": "/home/ali/Projects/ShalghamBot/src/bot/ChessBot.cpp",
-  "output": "CMakeFiles/chess.dir/src/bot/ChessBot.cpp.o"
+  "command": "/usr/bin/g++ -I/home/ali/Projects/ShalghamBot/include -I/home/ali/Projects/ShalghamBot/src/core -I/home/ali/Projects/ShalghamBot/src/ui -I/home/ali/Projects/ShalghamBot/src/bot -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/usr/lib/qt/mkspecs/linux-g++ -g -std=gnu++17 -o CMakeFiles/chess.dir/src/core/BitboardChessGame.cpp.o -c /home/ali/Projects/ShalghamBot/src/core/BitboardChessGame.cpp",
+  "file": "/home/ali/Projects/ShalghamBot/src/core/BitboardChessGame.cpp",
+  "output": "CMakeFiles/chess.dir/src/core/BitboardChessGame.cpp.o"
 },
 {
   "directory": "/home/ali/Projects/ShalghamBot/build",
-  "command": "/usr/bin/g++ -I/home/ali/Projects/ShalghamBot/include -I/home/ali/Projects/ShalghamBot/src/core -I/home/ali/Projects/ShalghamBot/src/ui -I/home/ali/Projects/ShalghamBot/src/bot -g -std=gnu++17 -o CMakeFiles/chess.dir/src/core/ChessGame.cpp.o -c /home/ali/Projects/ShalghamBot/src/core/ChessGame.cpp",
+  "command": "/usr/bin/g++ -I/home/ali/Projects/ShalghamBot/include -I/home/ali/Projects/ShalghamBot/src/core -I/home/ali/Projects/ShalghamBot/src/ui -I/home/ali/Projects/ShalghamBot/src/bot -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/usr/lib/qt/mkspecs/linux-g++ -g -std=gnu++17 -o CMakeFiles/chess.dir/src/core/ChessGame.cpp.o -c /home/ali/Projects/ShalghamBot/src/core/ChessGame.cpp",
   "file": "/home/ali/Projects/ShalghamBot/src/core/ChessGame.cpp",
   "output": "CMakeFiles/chess.dir/src/core/ChessGame.cpp.o"
 },
 {
   "directory": "/home/ali/Projects/ShalghamBot/build",
-  "command": "/usr/bin/g++ -I/home/ali/Projects/ShalghamBot/include -I/home/ali/Projects/ShalghamBot/src/core -I/home/ali/Projects/ShalghamBot/src/ui -I/home/ali/Projects/ShalghamBot/src/bot -g -std=gnu++17 -o CMakeFiles/chess.dir/src/main.cpp.o -c /home/ali/Projects/ShalghamBot/src/main.cpp",
+  "command": "/usr/bin/g++ -I/home/ali/Projects/ShalghamBot/include -I/home/ali/Projects/ShalghamBot/src/core -I/home/ali/Projects/ShalghamBot/src/ui -I/home/ali/Projects/ShalghamBot/src/bot -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/usr/lib/qt/mkspecs/linux-g++ -g -std=gnu++17 -o CMakeFiles/chess.dir/src/main.cpp.o -c /home/ali/Projects/ShalghamBot/src/main.cpp",
   "file": "/home/ali/Projects/ShalghamBot/src/main.cpp",
   "output": "CMakeFiles/chess.dir/src/main.cpp.o"
 },
 {
   "directory": "/home/ali/Projects/ShalghamBot/build",
-  "command": "/usr/bin/g++ -I/home/ali/Projects/ShalghamBot/include -I/home/ali/Projects/ShalghamBot/src/core -I/home/ali/Projects/ShalghamBot/src/ui -I/home/ali/Projects/ShalghamBot/src/bot -g -std=gnu++17 -o CMakeFiles/chess.dir/src/ui/ChessRenderer.cpp.o -c /home/ali/Projects/ShalghamBot/src/ui/ChessRenderer.cpp",
+  "command": "/usr/bin/g++ -I/home/ali/Projects/ShalghamBot/include -I/home/ali/Projects/ShalghamBot/src/core -I/home/ali/Projects/ShalghamBot/src/ui -I/home/ali/Projects/ShalghamBot/src/bot -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/usr/lib/qt/mkspecs/linux-g++ -g -std=gnu++17 -o CMakeFiles/chess.dir/src/ui/ChessRenderer.cpp.o -c /home/ali/Projects/ShalghamBot/src/ui/ChessRenderer.cpp",
   "file": "/home/ali/Projects/ShalghamBot/src/ui/ChessRenderer.cpp",
   "output": "CMakeFiles/chess.dir/src/ui/ChessRenderer.cpp.o"
+},
+{
+  "directory": "/home/ali/Projects/ShalghamBot/build",
+  "command": "/usr/bin/g++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I/home/ali/Projects/ShalghamBot/build/qtchess_autogen/include -I/home/ali/Projects/ShalghamBot/include -I/home/ali/Projects/ShalghamBot/src/core -I/home/ali/Projects/ShalghamBot/src/ui -I/home/ali/Projects/ShalghamBot/src/bot -isystem /usr/include/qt -isystem /usr/include/qt/QtWidgets -isystem /usr/include/qt/QtGui -isystem /usr/include/qt/QtCore -isystem /usr/lib/qt/mkspecs/linux-g++ -g -std=gnu++17 -fPIC -o CMakeFiles/qtchess.dir/qtchess_autogen/mocs_compilation.cpp.o -c /home/ali/Projects/ShalghamBot/build/qtchess_autogen/mocs_compilation.cpp",
+  "file": "/home/ali/Projects/ShalghamBot/build/qtchess_autogen/mocs_compilation.cpp",
+  "output": "CMakeFiles/qtchess.dir/qtchess_autogen/mocs_compilation.cpp.o"
+},
+{
+  "directory": "/home/ali/Projects/ShalghamBot/build",
+  "command": "/usr/bin/g++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I/home/ali/Projects/ShalghamBot/build/qtchess_autogen/include -I/home/ali/Projects/ShalghamBot/include -I/home/ali/Projects/ShalghamBot/src/core -I/home/ali/Projects/ShalghamBot/src/ui -I/home/ali/Projects/ShalghamBot/src/bot -isystem /usr/include/qt -isystem /usr/include/qt/QtWidgets -isystem /usr/include/qt/QtGui -isystem /usr/include/qt/QtCore -isystem /usr/lib/qt/mkspecs/linux-g++ -g -std=gnu++17 -fPIC -o CMakeFiles/qtchess.dir/src/core/BitboardChessGame.cpp.o -c /home/ali/Projects/ShalghamBot/src/core/BitboardChessGame.cpp",
+  "file": "/home/ali/Projects/ShalghamBot/src/core/BitboardChessGame.cpp",
+  "output": "CMakeFiles/qtchess.dir/src/core/BitboardChessGame.cpp.o"
+},
+{
+  "directory": "/home/ali/Projects/ShalghamBot/build",
+  "command": "/usr/bin/g++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I/home/ali/Projects/ShalghamBot/build/qtchess_autogen/include -I/home/ali/Projects/ShalghamBot/include -I/home/ali/Projects/ShalghamBot/src/core -I/home/ali/Projects/ShalghamBot/src/ui -I/home/ali/Projects/ShalghamBot/src/bot -isystem /usr/include/qt -isystem /usr/include/qt/QtWidgets -isystem /usr/include/qt/QtGui -isystem /usr/include/qt/QtCore -isystem /usr/lib/qt/mkspecs/linux-g++ -g -std=gnu++17 -fPIC -o CMakeFiles/qtchess.dir/src/core/ChessGame.cpp.o -c /home/ali/Projects/ShalghamBot/src/core/ChessGame.cpp",
+  "file": "/home/ali/Projects/ShalghamBot/src/core/ChessGame.cpp",
+  "output": "CMakeFiles/qtchess.dir/src/core/ChessGame.cpp.o"
+},
+{
+  "directory": "/home/ali/Projects/ShalghamBot/build",
+  "command": "/usr/bin/g++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I/home/ali/Projects/ShalghamBot/build/qtchess_autogen/include -I/home/ali/Projects/ShalghamBot/include -I/home/ali/Projects/ShalghamBot/src/core -I/home/ali/Projects/ShalghamBot/src/ui -I/home/ali/Projects/ShalghamBot/src/bot -isystem /usr/include/qt -isystem /usr/include/qt/QtWidgets -isystem /usr/include/qt/QtGui -isystem /usr/include/qt/QtCore -isystem /usr/lib/qt/mkspecs/linux-g++ -g -std=gnu++17 -fPIC -o CMakeFiles/qtchess.dir/src/qt_main.cpp.o -c /home/ali/Projects/ShalghamBot/src/qt_main.cpp",
+  "file": "/home/ali/Projects/ShalghamBot/src/qt_main.cpp",
+  "output": "CMakeFiles/qtchess.dir/src/qt_main.cpp.o"
+},
+{
+  "directory": "/home/ali/Projects/ShalghamBot/build",
+  "command": "/usr/bin/g++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I/home/ali/Projects/ShalghamBot/build/qtchess_autogen/include -I/home/ali/Projects/ShalghamBot/include -I/home/ali/Projects/ShalghamBot/src/core -I/home/ali/Projects/ShalghamBot/src/ui -I/home/ali/Projects/ShalghamBot/src/bot -isystem /usr/include/qt -isystem /usr/include/qt/QtWidgets -isystem /usr/include/qt/QtGui -isystem /usr/include/qt/QtCore -isystem /usr/lib/qt/mkspecs/linux-g++ -g -std=gnu++17 -fPIC -o CMakeFiles/qtchess.dir/src/ui/qt/QtChessRenderer.cpp.o -c /home/ali/Projects/ShalghamBot/src/ui/qt/QtChessRenderer.cpp",
+  "file": "/home/ali/Projects/ShalghamBot/src/ui/qt/QtChessRenderer.cpp",
+  "output": "CMakeFiles/qtchess.dir/src/ui/qt/QtChessRenderer.cpp.o"
+},
+{
+  "directory": "/home/ali/Projects/ShalghamBot/build",
+  "command": "/usr/bin/g++ -I/home/ali/Projects/ShalghamBot/build/perft_test_autogen/include -I/home/ali/Projects/ShalghamBot/include -I/home/ali/Projects/ShalghamBot/src/core -I/home/ali/Projects/ShalghamBot/src/ui -I/home/ali/Projects/ShalghamBot/src/bot -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/usr/lib/qt/mkspecs/linux-g++ -g -std=gnu++17 -o CMakeFiles/perft_test.dir/perft_test_autogen/mocs_compilation.cpp.o -c /home/ali/Projects/ShalghamBot/build/perft_test_autogen/mocs_compilation.cpp",
+  "file": "/home/ali/Projects/ShalghamBot/build/perft_test_autogen/mocs_compilation.cpp",
+  "output": "CMakeFiles/perft_test.dir/perft_test_autogen/mocs_compilation.cpp.o"
+},
+{
+  "directory": "/home/ali/Projects/ShalghamBot/build",
+  "command": "/usr/bin/g++ -I/home/ali/Projects/ShalghamBot/build/perft_test_autogen/include -I/home/ali/Projects/ShalghamBot/include -I/home/ali/Projects/ShalghamBot/src/core -I/home/ali/Projects/ShalghamBot/src/ui -I/home/ali/Projects/ShalghamBot/src/bot -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/usr/lib/qt/mkspecs/linux-g++ -g -std=gnu++17 -o CMakeFiles/perft_test.dir/tests/perft_test.cpp.o -c /home/ali/Projects/ShalghamBot/tests/perft_test.cpp",
+  "file": "/home/ali/Projects/ShalghamBot/tests/perft_test.cpp",
+  "output": "CMakeFiles/perft_test.dir/tests/perft_test.cpp.o"
+},
+{
+  "directory": "/home/ali/Projects/ShalghamBot/build",
+  "command": "/usr/bin/g++ -I/home/ali/Projects/ShalghamBot/build/perft_test_autogen/include -I/home/ali/Projects/ShalghamBot/include -I/home/ali/Projects/ShalghamBot/src/core -I/home/ali/Projects/ShalghamBot/src/ui -I/home/ali/Projects/ShalghamBot/src/bot -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/usr/lib/qt/mkspecs/linux-g++ -g -std=gnu++17 -o CMakeFiles/perft_test.dir/src/core/BitboardChessGame.cpp.o -c /home/ali/Projects/ShalghamBot/src/core/BitboardChessGame.cpp",
+  "file": "/home/ali/Projects/ShalghamBot/src/core/BitboardChessGame.cpp",
+  "output": "CMakeFiles/perft_test.dir/src/core/BitboardChessGame.cpp.o"
+},
+{
+  "directory": "/home/ali/Projects/ShalghamBot/build",
+  "command": "/usr/bin/g++ -I/home/ali/Projects/ShalghamBot/build/perft_test_autogen/include -I/home/ali/Projects/ShalghamBot/include -I/home/ali/Projects/ShalghamBot/src/core -I/home/ali/Projects/ShalghamBot/src/ui -I/home/ali/Projects/ShalghamBot/src/bot -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/usr/lib/qt/mkspecs/linux-g++ -g -std=gnu++17 -o CMakeFiles/perft_test.dir/src/core/ChessGame.cpp.o -c /home/ali/Projects/ShalghamBot/src/core/ChessGame.cpp",
+  "file": "/home/ali/Projects/ShalghamBot/src/core/ChessGame.cpp",
+  "output": "CMakeFiles/perft_test.dir/src/core/ChessGame.cpp.o"
 }
 ]

@@ -11,11 +11,7 @@
 sf::Vector2i screenToBoard(int mouseX, int mouseY, int squareSize) {
     int col = mouseX / squareSize;
     int row = mouseY / squareSize;
-    
-    // Debug the coordinate conversion
-    std::cout << "Screen coords: (" << mouseX << ", " << mouseY << ") -> "
-              << "Board coords: [" << row << ", " << col << "]" << std::endl;
-    
+
     return sf::Vector2i(row, col);
 }
 
@@ -26,9 +22,9 @@ char getPieceAt(const ChessGame& game, const sf::Vector2i& pos) {
     return ' ';
 }
 
-void printGameState(const ChessGame& game, bool whiteTurn, bool gameOver) {
+void printGameState(const ChessGame& game, bool gameOver) {
     std::cout << "=============================" << std::endl;
-    std::cout << "Current turn: " << (whiteTurn ? "WHITE" : "BLACK") << std::endl;
+    std::cout << "Current turn: " << (game.whiteToMove ? "WHITE" : "BLACK") << std::endl;
     std::cout << "Game board state:" << std::endl;
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
@@ -38,7 +34,7 @@ void printGameState(const ChessGame& game, bool whiteTurn, bool gameOver) {
     }
     std::cout << "Half move clock: " << game.halfMoveClock << std::endl;
     std::cout << "Game over: " << (gameOver ? "YES" : "NO") << std::endl;
-    if (game.kingIsInCheck(whiteTurn)) {
+    if (game.kingIsInCheck(game.whiteToMove)) {
         std::cout << "KING IS IN CHECK!" << std::endl;
     }
     std::cout << "=============================" << std::endl;
@@ -57,7 +53,6 @@ int main() {
     ChessRenderer renderer(squareSize, game);
 
     // Turn and game management.
-    bool whiteTurn = true;
     bool gameOver = false;
     std::string gameResult = "";
     sf::Vector2i selectedSquare(-1, -1);
@@ -66,6 +61,10 @@ int main() {
     // Pawn promotion variables.
     bool promotionPending = false;
     sf::Vector2i promotionSquare(-1, -1);
+
+    // Add this to the beginning of the main function or game loop
+    bool debugMode = true;
+    int frameCycle = 0;
 
     while (window.isOpen()) {
         // Process events - using SFML 2.x style
@@ -89,11 +88,6 @@ int main() {
             sf::Vector2i boardPos = screenToBoard(mouseX, mouseY, squareSize);
             int row = boardPos.x;
             int col = boardPos.y;
-            
-            // Debug: Print piece information at clicked position
-            char clickedPiece = getPieceAt(game, boardPos);
-            std::cout << "Clicked on square: [" << row << ", " << col << "]" << std::endl;
-            std::cout << "Piece at clicked position: " << (clickedPiece == ' ' ? "empty" : std::string(1, clickedPiece)) << std::endl;
             
             // Add a visual marker for debugging at the mouse position
             sf::CircleShape clickMarker(5);
@@ -143,7 +137,6 @@ int main() {
                 if (move.x == row && move.y == col) {
                     clickedLegalMove = true;
                     clickedMove = move;
-                    std::cout << "Legal move found at [" << row << ", " << col << "]" << std::endl;
                     break;
                 }
             }
@@ -168,7 +161,7 @@ int main() {
                         else if (clickedMove.y == 2) {
                             game.board[7][0] = ' ';
                             game.board[7][3] = 'R';
-                            game.whiteRookQueensideMoved = true;
+                            game.whiteRookQueenSideMoved = true;
                         }
                         game.whiteKingMoved = true;
                     }
@@ -181,7 +174,7 @@ int main() {
                         else if (clickedMove.y == 2) {
                             game.board[0][0] = ' ';
                             game.board[0][3] = 'r';
-                            game.blackRookQueensideMoved = true;
+                            game.blackRookQueenSideMoved = true;
                         }
                         game.blackKingMoved = true;
                     }
@@ -242,19 +235,18 @@ int main() {
                 
                 selectedSquare = sf::Vector2i(-1, -1);
                 legalMoves.clear();
-                whiteTurn = !whiteTurn;
-                std::cout << "Turn switched to: " << (whiteTurn ? "WHITE" : "BLACK") << std::endl;
+                game.whiteToMove = !game.whiteToMove;
                 
                 // Check for game-ending conditions
-                if (game.isCheckmate(whiteTurn)) {
+                if (game.isCheckmate(game.whiteToMove)) {
                     gameOver = true;
-                    gameResult = whiteTurn ? "Checkmate! Black wins!" : "Checkmate! White wins!";
+                    gameResult = game.whiteToMove ? "Checkmate! Black wins!" : "Checkmate! White wins!";
                     std::cout << "CHECKMATE DETECTED: " << gameResult << std::endl;
                     
                     // Verify checkmate for debugging
-                    game.verifyCheckmate(whiteTurn);
+                    game.verifyCheckmate(game.whiteToMove);
                 }
-                else if (game.isStalemate(whiteTurn)) {
+                else if (game.isStalemate(game.whiteToMove)) {
                     gameOver = true;
                     gameResult = "Draw by stalemate.";
                     std::cout << "STALEMATE DETECTED!" << std::endl;
@@ -265,8 +257,7 @@ int main() {
                     std::cout << "50-MOVE RULE DETECTED!" << std::endl;
                 }
                 
-                // Print game state only after a move has been made
-                printGameState(game, whiteTurn, gameOver);
+                printGameState(game, gameOver);
                 
                 continue;
             }
@@ -276,30 +267,21 @@ int main() {
                 char piece = game.board[row][col];
                 bool pieceWhite = std::isupper(piece);
                 
-                std::cout << "Selected piece: " << piece << ", is white: " << pieceWhite 
-                          << ", current turn: " << (whiteTurn ? "white" : "black") << std::endl;
-                
-                if (pieceWhite != whiteTurn) {
-                    std::cout << "Wrong color piece for current turn" << std::endl;
+                if (pieceWhite != game.whiteToMove) {
                     selectedSquare = sf::Vector2i(-1, -1);
                     legalMoves.clear();
                     continue;
                 }
                 
-                std::cout << "Setting selected square to [" << row << ", " << col << "]" << std::endl;
                 selectedSquare = sf::Vector2i(row, col);
                 std::vector<sf::Vector2i> pseudo = game.getLegalMoves(row, col, false);
-                std::vector<sf::Vector2i> filtered;
-                
-                std::cout << "Found " << pseudo.size() << " pseudo-legal moves" << std::endl;
-                
+                std::vector<sf::Vector2i> filtered;                
                 for (auto move : pseudo) {
                     ChessGame simState = game.simulateMove(sf::Vector2i(row, col), move);
-                    if (!simState.kingIsInCheck(whiteTurn))
+                    if (!simState.kingIsInCheck(game.whiteToMove))
                         filtered.push_back(move);
                 }
                 
-                std::cout << "After filtering, " << filtered.size() << " legal moves remain" << std::endl;
                 legalMoves = filtered;
                 continue;
             }
@@ -317,7 +299,7 @@ int main() {
         std::string message = "";
         if (gameOver)
             message = gameResult;
-        else if (game.kingIsInCheck(whiteTurn))
+        else if (game.kingIsInCheck(game.whiteToMove))
             message = "Check!";
 
         renderer.render(window, selectedSquare, legalMoves, promotionPending, promotionSquare, message);

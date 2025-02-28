@@ -1,3 +1,9 @@
 /home/ali/Projects/ShalghamBot/build/CMakeFiles/chess.dir
+/home/ali/Projects/ShalghamBot/build/CMakeFiles/qtchess.dir
+/home/ali/Projects/ShalghamBot/build/CMakeFiles/perft_test.dir
 /home/ali/Projects/ShalghamBot/build/CMakeFiles/edit_cache.dir
 /home/ali/Projects/ShalghamBot/build/CMakeFiles/rebuild_cache.dir
+/home/ali/Projects/ShalghamBot/build/CMakeFiles/qtchess_autogen_timestamp_deps.dir
+/home/ali/Projects/ShalghamBot/build/CMakeFiles/qtchess_autogen.dir
+/home/ali/Projects/ShalghamBot/build/CMakeFiles/perft_test_autogen_timestamp_deps.dir
+/home/ali/Projects/ShalghamBot/build/CMakeFiles/perft_test_autogen.dir

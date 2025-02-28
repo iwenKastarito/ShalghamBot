@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y \
     cmake \
     git \
     libsfml-dev \
+    qtbase5-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
@@ -21,5 +22,8 @@ RUN mkdir -p build
 WORKDIR /app/build
 RUN cmake .. && make
 
-# Command to run the chess bot
-CMD ["./ChessBot"] 
+# Command to run the SFML chess game
+CMD ["./chess"]
+
+# To run the Qt version instead, use:
+# CMD ["./qtchess"] 

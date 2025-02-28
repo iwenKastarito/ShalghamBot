@@ -19,6 +19,10 @@ endif()
 # Find SFML with updated component names for version 3.0
 find_package(SFML 2.6 COMPONENTS graphics window system REQUIRED)
 
+# Find Qt for the Qt version
+find_package(Qt5 COMPONENTS Core Widgets Gui QUIET)
+set(BUILD_QT_VERSION ${Qt5_FOUND})
+
 # Define project structure
 set(PROJECT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(PROJECT_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
@@ -32,14 +36,40 @@ include_directories(
     ${PROJECT_SOURCE_DIR}/bot
 )
 
-# Source files
-file(GLOB_RECURSE SOURCES "src/*.cpp")
+# Source files for SFML version
+file(GLOB_RECURSE CORE_SOURCES "src/core/*.cpp")
+file(GLOB_RECURSE UI_SFML_SOURCES "src/ui/*.cpp" "src/main.cpp")
+list(FILTER UI_SFML_SOURCES EXCLUDE REGEX "qt")
 
-# Create executable
-add_executable(chess ${SOURCES})
+# Create SFML executable
+add_executable(chess ${CORE_SOURCES} ${UI_SFML_SOURCES})
 
 # Link SFML with updated component names
 target_link_libraries(chess sfml-graphics sfml-window sfml-system)
+
+# Qt version
+if(BUILD_QT_VERSION)
+    # This is needed for Qt
+    set(CMAKE_AUTOMOC ON)
+    set(CMAKE_AUTORCC ON)
+    set(CMAKE_AUTOUIC ON)
+
+    # Add Qt specific include directories
+    include_directories(${Qt5Widgets_INCLUDE_DIRS})
+
+    # Qt source files 
+    file(GLOB_RECURSE UI_QT_SOURCES "src/ui/qt/*.cpp" "src/qt_main.cpp")
+    
+    # Create Qt executable
+    add_executable(qtchess ${CORE_SOURCES} ${UI_QT_SOURCES})
+    
+    # Link Qt libraries
+    target_link_libraries(qtchess Qt5::Core Qt5::Widgets Qt5::Gui)
+    
+    message(STATUS "Qt version will be built")
+else()
+    message(STATUS "Qt NOT found - Qt version will not be built")
+endif()
 
 # Make sure resources directory exists and is copied
 if(NOT EXISTS "${CMAKE_SOURCE_DIR}/resources")
@@ -56,4 +86,8 @@ file(COPY ${CMAKE_SOURCE_DIR}/resources DESTINATION ${CMAKE_BINARY_DIR})
 #    tests/TestMain.cpp
 #    tests/core/ChessGameTests.cpp
 #    tests/bot/ChessBotTests.cpp
-#) 
+#)
+
+# Add perft test executable
+add_executable(perft_test tests/perft_test.cpp ${CORE_SOURCES})
+target_link_libraries(perft_test sfml-graphics sfml-window sfml-system) 

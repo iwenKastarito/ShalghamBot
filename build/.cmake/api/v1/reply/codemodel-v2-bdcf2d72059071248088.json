@@ -1,0 +1,114 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.10"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "ChessGame",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "chess::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-chess-Debug-6752435ff5556b620a83.json",
+					"name" : "chess",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "perft_test::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-perft_test-Debug-c92a6cd5b9d7f3a6f44f.json",
+					"name" : "perft_test",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "perft_test_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-perft_test_autogen-Debug-9169b8a413ec537357b6.json",
+					"name" : "perft_test_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "perft_test_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-perft_test_autogen_timestamp_deps-Debug-878202e63a58b25ee0da.json",
+					"name" : "perft_test_autogen_timestamp_deps",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "qtchess::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-qtchess-Debug-372b07ea7c99977c8014.json",
+					"name" : "qtchess",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "qtchess_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-qtchess_autogen-Debug-1f7a65aa9a593adaa5c7.json",
+					"name" : "qtchess_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "qtchess_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-qtchess_autogen_timestamp_deps-Debug-d4a71ac58d8ce29c3e0d.json",
+					"name" : "qtchess_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/ali/Projects/ShalghamBot/build",
+		"source" : "/home/ali/Projects/ShalghamBot"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}
