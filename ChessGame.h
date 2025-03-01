@@ -19,6 +19,8 @@ public:
     bool blackRookQueensideMoved;
     sf::Vector2i enPassantTarget;  // (-1,-1) if none available.
 
+    int moveNumber;
+
 
     int halfMoveClock;
 

@@ -22,6 +22,7 @@ ChessGame::ChessGame() {
     blackRookQueensideMoved = false;
     enPassantTarget = sf::Vector2i(-1, -1);
     halfMoveClock = 0;
+    moveNumber = 0;
 }
 
 bool ChessGame::inBounds(int row, int col) {
@@ -99,6 +100,7 @@ bool ChessGame::kingIsInCheck(bool white) const {
             bool pieceWhite = std::isupper(piece);
             if (pieceWhite == white)
                 continue;
+            // Use pseudo-legal moves (allowKingCapture==true) to check if the king is attacked.
             std::vector<sf::Vector2i> oppMoves = getLegalMoves(i, j, true);
             for (auto& move : oppMoves) {
                 if (move == kingPos)
@@ -117,23 +119,21 @@ bool ChessGame::hasLegalMoves(bool white) const {
                 continue;
             if (std::isupper(piece) != white)
                 continue;
-            std::vector<sf::Vector2i> pseudo = getLegalMoves(i, j, false);
-            for (auto move : pseudo) {
-                ChessGame newState = simulateMove(sf::Vector2i(i, j), move);
-                if (!newState.kingIsInCheck(white))
-                    return true;
-            }
+            // Get only moves that do not expose the king.
+            std::vector<sf::Vector2i> legalMoves = getLegalMoves(i, j, false);
+            if (!legalMoves.empty())
+                return true;
         }
     }
     return false;
 }
 
 std::vector<sf::Vector2i> ChessGame::getLegalMoves(int row, int col, bool allowKingCapture) const {
-    std::vector<sf::Vector2i> moves;
+    std::vector<sf::Vector2i> pseudoMoves;
     const auto& board = this->board;
     char piece = board[row][col];
     if (piece == ' ')
-        return moves;
+        return pseudoMoves;
     bool white = std::isupper(piece);
     char lowerPiece = std::tolower(piece);
 
@@ -143,10 +143,10 @@ std::vector<sf::Vector2i> ChessGame::getLegalMoves(int row, int col, bool allowK
         int startRow = white ? 6 : 1;
         int newRow = row + direction;
         if (inBounds(newRow, col) && board[newRow][col] == ' ')
-            moves.push_back(sf::Vector2i(newRow, col));
+            pseudoMoves.push_back(sf::Vector2i(newRow, col));
         if (row == startRow && inBounds(newRow + direction, col) &&
             board[newRow][col] == ' ' && board[newRow + direction][col] == ' ')
-            moves.push_back(sf::Vector2i(newRow + direction, col));
+            pseudoMoves.push_back(sf::Vector2i(newRow + direction, col));
         for (int dc = -1; dc <= 1; dc += 2) {
             int newCol = col + dc;
             if (inBounds(newRow, newCol)) {
@@ -155,10 +155,10 @@ std::vector<sf::Vector2i> ChessGame::getLegalMoves(int row, int col, bool allowK
                     if (white ? std::islower(target) : std::isupper(target)) {
                         if ((white && target == 'k') || (!white && target == 'K')) {
                             if (allowKingCapture)
-                                moves.push_back(sf::Vector2i(newRow, newCol));
+                                pseudoMoves.push_back(sf::Vector2i(newRow, newCol));
                         }
                         else {
-                            moves.push_back(sf::Vector2i(newRow, newCol));
+                            pseudoMoves.push_back(sf::Vector2i(newRow, newCol));
                         }
                     }
                 }
@@ -169,14 +169,13 @@ std::vector<sf::Vector2i> ChessGame::getLegalMoves(int row, int col, bool allowK
                 int newCol = col + dc;
                 if (inBounds(newRow, newCol)) {
                     if (enPassantTarget == sf::Vector2i(newRow, newCol))
-                        moves.push_back(sf::Vector2i(newRow, newCol));
+                        pseudoMoves.push_back(sf::Vector2i(newRow, newCol));
                 }
             }
         }
-        return moves;
     }
     // Knight moves.
-    if (lowerPiece == 'n') {
+    else if (lowerPiece == 'n') {
         int knightMoves[8][2] = {
             {-2, -1}, {-2, 1},
             {-1, -2}, {-1, 2},
@@ -188,22 +187,21 @@ std::vector<sf::Vector2i> ChessGame::getLegalMoves(int row, int col, bool allowK
             if (inBounds(newRow, newCol)) {
                 char target = board[newRow][newCol];
                 if (target == ' ')
-                    moves.push_back(sf::Vector2i(newRow, newCol));
+                    pseudoMoves.push_back(sf::Vector2i(newRow, newCol));
                 else if (white ? std::islower(target) : std::isupper(target)) {
                     if ((white && target == 'k') || (!white && target == 'K')) {
                         if (allowKingCapture)
-                            moves.push_back(sf::Vector2i(newRow, newCol));
+                            pseudoMoves.push_back(sf::Vector2i(newRow, newCol));
                     }
                     else {
-                        moves.push_back(sf::Vector2i(newRow, newCol));
+                        pseudoMoves.push_back(sf::Vector2i(newRow, newCol));
                     }
                 }
             }
         }
-        return moves;
     }
     // King moves.
-    if (lowerPiece == 'k') {
+    else if (lowerPiece == 'k') {
         for (int dr = -1; dr <= 1; dr++) {
             for (int dc = -1; dc <= 1; dc++) {
                 if (dr == 0 && dc == 0)
@@ -212,14 +210,14 @@ std::vector<sf::Vector2i> ChessGame::getLegalMoves(int row, int col, bool allowK
                 if (inBounds(newRow, newCol)) {
                     char target = board[newRow][newCol];
                     if (target == ' ')
-                        moves.push_back(sf::Vector2i(newRow, newCol));
+                        pseudoMoves.push_back(sf::Vector2i(newRow, newCol));
                     else if (white ? std::islower(target) : std::isupper(target)) {
                         if ((white && target == 'k') || (!white && target == 'K')) {
                             if (allowKingCapture)
-                                moves.push_back(sf::Vector2i(newRow, newCol));
+                                pseudoMoves.push_back(sf::Vector2i(newRow, newCol));
                         }
                         else {
-                            moves.push_back(sf::Vector2i(newRow, newCol));
+                            pseudoMoves.push_back(sf::Vector2i(newRow, newCol));
                         }
                     }
                 }
@@ -229,72 +227,72 @@ std::vector<sf::Vector2i> ChessGame::getLegalMoves(int row, int col, bool allowK
         if (white && row == 7 && col == 4 && !whiteKingMoved) {
             if (!whiteRookKingsideMoved && board[7][7] == 'R') {
                 if (board[7][5] == ' ' && board[7][6] == ' ')
-                    moves.push_back(sf::Vector2i(7, 6));
+                    pseudoMoves.push_back(sf::Vector2i(7, 6));
             }
             if (!whiteRookQueensideMoved && board[7][0] == 'R') {
                 if (board[7][1] == ' ' && board[7][2] == ' ' && board[7][3] == ' ')
-                    moves.push_back(sf::Vector2i(7, 2));
+                    pseudoMoves.push_back(sf::Vector2i(7, 2));
             }
         }
         if (!white && row == 0 && col == 4 && !blackKingMoved) {
             if (!blackRookKingsideMoved && board[0][7] == 'r') {
                 if (board[0][5] == ' ' && board[0][6] == ' ')
-                    moves.push_back(sf::Vector2i(0, 6));
+                    pseudoMoves.push_back(sf::Vector2i(0, 6));
             }
             if (!blackRookQueensideMoved && board[0][0] == 'r') {
                 if (board[0][1] == ' ' && board[0][2] == ' ' && board[0][3] == ' ')
-                    moves.push_back(sf::Vector2i(0, 2));
+                    pseudoMoves.push_back(sf::Vector2i(0, 2));
             }
         }
-        return moves;
     }
     // Linear moves for Rook, Bishop, and Queen.
-    auto addLinearMoves = [&](int dr, int dc) {
-        int r = row + dr, c = col + dc;
-        while (inBounds(r, c)) {
-            char target = board[r][c];
-            if (target == ' ')
-                moves.push_back(sf::Vector2i(r, c));
-            else {
-                if (white ? std::islower(target) : std::isupper(target)) {
-                    if ((white && target == 'k') || (!white && target == 'K')) {
-                        if (allowKingCapture)
-                            moves.push_back(sf::Vector2i(r, c));
-                        break;
+    else if (lowerPiece == 'r' || lowerPiece == 'b' || lowerPiece == 'q') {
+        auto addLinearMoves = [&](int dr, int dc) {
+            int r = row + dr, c = col + dc;
+            while (inBounds(r, c)) {
+                char target = board[r][c];
+                if (target == ' ')
+                    pseudoMoves.push_back(sf::Vector2i(r, c));
+                else {
+                    if (white ? std::islower(target) : std::isupper(target)) {
+                        if ((white && target == 'k') || (!white && target == 'K')) {
+                            if (allowKingCapture)
+                                pseudoMoves.push_back(sf::Vector2i(r, c));
+                            break;
+                        }
+                        pseudoMoves.push_back(sf::Vector2i(r, c));
                     }
-                    moves.push_back(sf::Vector2i(r, c));
+                    break;
                 }
-                break;
+                r += dr; c += dc;
             }
-            r += dr; c += dc;
+            };
+        if (lowerPiece == 'r' || lowerPiece == 'q') {
+            addLinearMoves(1, 0);
+            addLinearMoves(-1, 0);
+            addLinearMoves(0, 1);
+            addLinearMoves(0, -1);
         }
-        };
-    if (lowerPiece == 'r') {
-        addLinearMoves(1, 0);
-        addLinearMoves(-1, 0);
-        addLinearMoves(0, 1);
-        addLinearMoves(0, -1);
-        return moves;
+        if (lowerPiece == 'b' || lowerPiece == 'q') {
+            addLinearMoves(1, 1);
+            addLinearMoves(1, -1);
+            addLinearMoves(-1, 1);
+            addLinearMoves(-1, -1);
+        }
     }
-    if (lowerPiece == 'b') {
-        addLinearMoves(1, 1);
-        addLinearMoves(1, -1);
-        addLinearMoves(-1, 1);
-        addLinearMoves(-1, -1);
-        return moves;
+
+    // If we are not allowing king capture (i.e. we want moves that leave the king safe),
+    // filter out any pseudo moves that would leave the king in check.
+    if (!allowKingCapture) {
+        std::vector<sf::Vector2i> legalMoves;
+        for (auto move : pseudoMoves) {
+            ChessGame newState = simulateMove(sf::Vector2i(row, col), move);
+            if (!newState.kingIsInCheck(white))
+                legalMoves.push_back(move);
+        }
+        return legalMoves;
     }
-    if (lowerPiece == 'q') {
-        addLinearMoves(1, 0);
-        addLinearMoves(-1, 0);
-        addLinearMoves(0, 1);
-        addLinearMoves(0, -1);
-        addLinearMoves(1, 1);
-        addLinearMoves(1, -1);
-        addLinearMoves(-1, 1);
-        addLinearMoves(-1, -1);
-        return moves;
-    }
-    return moves;
+    return pseudoMoves;
 }
 
 void ChessGame::applyMove(const sf::Vector2i& from, const sf::Vector2i& to) {
