@@ -1,0 +1,14 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Microsoft\VC\v170\Microsoft.CppClean.targets(77,5): warning : Access to the path 'c:\users\iwen2\source\repos\chessbot\x64\debug\chessbot.exe' is denied.
+  Bitboard.cpp
+C:\Users\iwen2\source\repos\ChessBot\ChessBot\PieceList.h(20,47): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  Board.cpp
+C:\Users\iwen2\source\repos\ChessBot\ChessBot\PieceList.h(20,47): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  Evaluation.cpp
+C:\Users\iwen2\source\repos\ChessBot\ChessBot\PieceList.h(20,47): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  main.cpp
+C:\Users\iwen2\source\repos\ChessBot\ChessBot\PieceList.h(20,47): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  Move.cpp
+  UCIEngine.cpp
+C:\Users\iwen2\source\repos\ChessBot\ChessBot\PieceList.h(20,47): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  Generating Code...
+LINK : fatal error LNK1104: cannot open file 'C:\Users\iwen2\source\repos\ChessBot\x64\Debug\ChessBot.exe'
