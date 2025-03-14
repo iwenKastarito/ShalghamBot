@@ -1,11 +1,11 @@
-#ifndef MINIMAX_H
+﻿#ifndef MINIMAX_H
 #define MINIMAX_H
 
 #include "ChessGame.h"
 #include "bot.h"
 #include <SFML/System/Vector2.hpp>
 #include <unordered_map>
-#include <string>
+#include <cstdint>
 #include <utility>
 #include <vector>
 
@@ -30,19 +30,19 @@ struct CandidateMove {
 };
 
 // Minimax algorithm implementation.
-// This class encapsulates all minimax-specific logic (e.g. evaluation and search).
 class MinimaxAlgorithm {
 public:
-    int searchDepth;       // e.g., 13
+    int searchDepth;       // e.g. 13
     int nodesEvaluated;    // Counts nodes evaluated during search.
-    std::unordered_map<std::string, int> transpositionTable;
+    // Transposition table using a 64-bit key.
+    std::unordered_map<uint64_t, int> transpositionTable;
 
     MinimaxAlgorithm(int depth);
     int minimax(ChessGame game, int depth, int alpha, int beta, bool whiteTurn, bool botIsWhite);
     int evaluate(const ChessGame& game, bool botIsWhite);
     GamePhase getGamePhase(const ChessGame& game);
     int countMajorPieces(const ChessGame& game);
-    std::string boardToString(const ChessGame& game);
+    uint64_t boardHash(const ChessGame& game);
 };
 
 // A minimax-based bot that uses the MinimaxAlgorithm.

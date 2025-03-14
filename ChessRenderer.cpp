@@ -47,7 +47,7 @@ void ChessRenderer::render(sf::RenderWindow& window,
     const std::string& gameMessage)
 {
     int boardSize = 8;
-    // 1. Draw board squares.
+    // Draw board squares.
     for (int row = 0; row < boardSize; ++row) {
         for (int col = 0; col < boardSize; ++col) {
             sf::RectangleShape square(sf::Vector2f(squareSize, squareSize));
@@ -59,10 +59,10 @@ void ChessRenderer::render(sf::RenderWindow& window,
             window.draw(square);
         }
     }
-    // 2. Draw pieces.
+    // Draw pieces.
     for (int row = 0; row < boardSize; ++row) {
         for (int col = 0; col < boardSize; ++col) {
-            char piece = game.board[row][col];
+            char piece = game.board[row * 8 + col];
             if (piece != ' ') {
                 sf::Sprite sprite;
                 sprite.setTexture(pieceTextures[piece]);
@@ -75,31 +75,28 @@ void ChessRenderer::render(sf::RenderWindow& window,
             }
         }
     }
-    // 3. Highlight the selected square.
+    // Highlight selected square.
     if (selectedSquare.x != -1) {
         sf::RectangleShape highlight(sf::Vector2f(squareSize, squareSize));
         highlight.setPosition(selectedSquare.y * squareSize, selectedSquare.x * squareSize);
         highlight.setFillColor(sf::Color(255, 255, 0, 100));
         window.draw(highlight);
     }
-    // 4. Draw legal move hints.
+    // Draw legal move hints.
     for (const auto& move : legalMoves) {
         sf::CircleShape hint(squareSize / 6.0f);
         sf::Color hintColor;
         if (selectedSquare.x != -1) {
-            char selPiece = game.board[selectedSquare.x][selectedSquare.y];
-            // For a king making a two-square move, mark castling with blue.
+            char selPiece = game.board[selectedSquare.x * 8 + selectedSquare.y];
             if (std::tolower(selPiece) == 'k' && std::abs(move.y - selectedSquare.y) == 2) {
-                hintColor = sf::Color(0, 0, 255, 150); // Blue for castling.
+                hintColor = sf::Color(0, 0, 255, 150);
             }
-            // If the move is an en passant capture or a normal capture,
-            // (en passant: pawn move to enPassantTarget, which is empty on board).
             else if ((std::tolower(selPiece) == 'p' && game.enPassantTarget == move) ||
-                game.board[move.x][move.y] != ' ') {
-                hintColor = sf::Color(255, 0, 0, 150); // Red for capture/en passant.
+                game.board[move.x * 8 + move.y] != ' ') {
+                hintColor = sf::Color(255, 0, 0, 150);
             }
             else {
-                hintColor = sf::Color(0, 255, 0, 150); // Green for a normal move.
+                hintColor = sf::Color(0, 255, 0, 150);
             }
         }
         else {
@@ -111,11 +108,10 @@ void ChessRenderer::render(sf::RenderWindow& window,
             move.x * squareSize + squareSize / 2.0f);
         window.draw(hint);
     }
-
-    // 5. Draw pawn promotion menu if pending.
+    // Draw pawn promotion menu.
     if (promotionPending) {
         std::vector<char> options;
-        char currentPawn = game.board[promotionSquare.x][promotionSquare.y];
+        char currentPawn = game.board[promotionSquare.x * 8 + promotionSquare.y];
         if (currentPawn == 'P')
             options = { 'N', 'R', 'B', 'Q' };
         else if (currentPawn == 'p')
@@ -139,7 +135,7 @@ void ChessRenderer::render(sf::RenderWindow& window,
             window.draw(sprite);
         }
     }
-    // 6. Draw the game message (e.g., "Check!" or "Checkmate! ...").
+    // Draw game message.
     if (!gameMessage.empty()) {
         messageText.setString(gameMessage);
         window.draw(messageText);

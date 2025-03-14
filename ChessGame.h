@@ -2,15 +2,17 @@
 #define CHESSGAME_H
 
 #include <SFML/Graphics.hpp>
-#include <vector>
+#include <array>
 #include <string>
+#include <vector>
 
 // The ChessGame class encapsulates the board state, special flags (castling, en passant)
 // and game logic such as move simulation, legal move generation, and check detection.
 class ChessGame {
 public:
-    // Data members representing the board and flags.
-    std::vector<std::string> board;
+    // Board represented as a 64-element array (8x8 board).
+    std::array<char, 64> board;
+
     bool whiteKingMoved;
     bool whiteRookKingsideMoved;
     bool whiteRookQueensideMoved;
@@ -20,8 +22,6 @@ public:
     sf::Vector2i enPassantTarget;  // (-1,-1) if none available.
 
     int moveNumber;
-
-
     int halfMoveClock;
 
     // Constructor: initializes a standard chess starting position.
